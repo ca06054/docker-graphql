@@ -26,6 +26,16 @@ jobs:
         echo "Iniciando Login..."
         docker login -u $DOCKER_USER -p $DOCKER_TOKEN
         echo "Finalizando login."
+    
+    - name: Create Docker image
+      run: |
+        docker build -t tecnoin19/docker-graphql:0.0.2 .
+
+    - name: Push Docker image
+      run: |
+        docker push tecnoin19/docker-graphql:0.0.2
+
+
       
                                                                                                       
     
