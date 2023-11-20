@@ -30,10 +30,12 @@ jobs:
     - name: Create Docker image
       run: |
         docker build -t tecnoin19/docker-graphql:0.0.2 .
+        docker build -t tecnoin19/docker-graphql:latest .
 
     - name: Push Docker image
       run: |
         docker push tecnoin19/docker-graphql:0.0.2
+        docker push tecnoin19/docker-graphql:latest
 
 
       
