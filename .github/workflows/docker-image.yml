@@ -31,19 +31,21 @@ jobs:
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_TOKEN: ${{secrets.DOCKER_TOKEN}}
-        NEW_VERSION: ${{steps.version.outputs.version}}
       run: |
         echo "Iniciando Login..."
         docker login -u $DOCKER_USER -p $DOCKER_TOKEN
         echo "Finalizando login."
-        echo "version a utilizar: $NEW_VERSION!!!!!!!!!!!!!!!!!!"
     
     - name: Create Docker image
+      env:
+        NEW_VERSION: ${{steps.version.outputs.version}}
       run: |
         docker build -t tecnoin19/docker-graphql:$NEW_VERSION .
         docker build -t tecnoin19/docker-graphql:latest .
 
     - name: Push Docker image
+      env:
+        NEW_VERSION: ${{steps.version.outputs.version}}
       run: |
         docker push tecnoin19/docker-graphql:$NEW_VERSION
         docker push tecnoin19/docker-graphql:latest
