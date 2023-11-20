@@ -36,7 +36,7 @@ jobs:
         echo "Iniciando Login..."
         docker login -u $DOCKER_USER -p $DOCKER_TOKEN
         echo "Finalizando login."
-        echo "version a utilizar: $NEW_VERSION!!!!!!!!!!!!!!!!!!!!"
+        echo "version a utilizar: $NEW_VERSION!!!!!!!!!!!!!!!!!!!"
     
     #- name: Create Docker image
      # run: |
