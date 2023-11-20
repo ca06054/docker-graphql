@@ -19,10 +19,10 @@ jobs:
         fetch-depth: 0
                   
     - name: Git Semantic Version
-      uses: PaulHatch/semantic-version@v5.0.1
+      uses: PaulHatch/semantic-version@v4.0.3
       with:
         major_pattern: "major:"
-        minor_pattern: "minor:"
+        minor_pattern: "feat:"
         version_format: "${major}.${minor}.${patch}-prerelease${increment}"
       id: version
           
@@ -38,15 +38,15 @@ jobs:
         echo "Finalizando login."
         echo "version a utilizar: $NEW_VERSION!!!!!!!!!!!!!!!!!!"
     
-    #- name: Create Docker image
-     # run: |
-      #  docker build -t tecnoin19/docker-graphql:0.0.2 .
-       # docker build -t tecnoin19/docker-graphql:latest .
+    - name: Create Docker image
+      run: |
+        docker build -t tecnoin19/docker-graphql:$NEW_VERSION .
+        docker build -t tecnoin19/docker-graphql:latest .
 
-    #- name: Push Docker image
-     # run: |
-      #  docker push tecnoin19/docker-graphql:0.0.2
-       # docker push tecnoin19/docker-graphql:latest
+    - name: Push Docker image
+      run: |
+        docker push tecnoin19/docker-graphql:$NEW_VERSION
+        docker push tecnoin19/docker-graphql:latest
 
 
       
